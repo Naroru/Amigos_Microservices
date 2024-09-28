@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  postgres:  #по хорошему для каждого сервиса нужен свой отдельный контейнер с БД, но в качестве упрощения тут в рамках
+    #одного сервера БД будут созданы разные базы данных - под каждый микросервис
+    image: 'postgres:14'
+    container_name: postgres_amigos
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=admin
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '5432:5432'
+    expose:
+      # Opens port 3306 on the container
+      - '5432'
+
+volumes:
+  postgres:
