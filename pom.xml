@@ -14,6 +14,7 @@
         <module>Fraud</module>
         <module>EurekaServer</module>
         <module>Clients</module>
+        <module>Notification</module>
     </modules>
 
     <properties>

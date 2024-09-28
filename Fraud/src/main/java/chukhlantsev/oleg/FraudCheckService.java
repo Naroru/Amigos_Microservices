@@ -1,5 +1,7 @@
 package chukhlantsev.oleg;
 
+import chukhlantsev.oleg.clients.notification.NotificationClient;
+import chukhlantsev.oleg.clients.notification.NotificationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,10 @@ public class FraudCheckService {
 
     private final FraudCheckRepository fraudCheckRepository;
 
+
     public boolean isFraudster(Integer customerID)
     {
-        fraudCheckRepository.save(
+         fraudCheckRepository.save(
                 FraudCheckHistory.builder()
                         .customerId(customerID)
                         .isFraudster(false)
