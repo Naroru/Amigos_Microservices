@@ -1,5 +1,6 @@
 version: '3.1'
 services:
+
   postgres:  #по хорошему для каждого сервиса нужен свой отдельный контейнер с БД, но в качестве упрощения тут в рамках
     #одного сервера БД будут созданы разные базы данных - под каждый микросервис
     image: 'postgres:14'
@@ -16,6 +17,12 @@ services:
     expose:
       # Opens port 3306 on the container
       - '5432'
+
+  zipkin:
+    image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}
+    container_name: zipkin
+    ports:
+      - '9411:9411'
 
 volumes:
   postgres:

@@ -15,6 +15,7 @@
         <module>EurekaServer</module>
         <module>Clients</module>
         <module>Notification</module>
+        <module>ApiGateway</module>
     </modules>
 
     <properties>
@@ -65,6 +66,17 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>
+
 
     </dependencies>
 
