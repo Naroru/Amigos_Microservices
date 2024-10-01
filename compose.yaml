@@ -17,6 +17,12 @@ services:
     expose:
       # Opens port 3306 on the container
       - '5432'
+  rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    container_name: rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
 
   zipkin:
     image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}

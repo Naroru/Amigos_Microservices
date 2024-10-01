@@ -2,6 +2,7 @@ spring:
   application:
     name: notification
 
+
 server:
   port: 8086
 
@@ -23,11 +24,17 @@ server:
     show-sql: true
 
 
-
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queue:
+    notification: notification.queue
+  routing-keys:
+    internal-notification: internal.notification.routing-key
 
 
