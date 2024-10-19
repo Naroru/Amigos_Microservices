@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+// ПО ФАКТУ КЛАСС НЕ НУЖЕН Т,К, ОН СОЗДАЕТ ОЧЕРЕДЬ И ОБМЕННИК В РАБИТЕ, А ИХ МОЖНО СОЗДАТЬ НЕПОСРЕДСТВЕННО ТАМ
 @Configuration
 @Getter
 public class NotificationConfig {
