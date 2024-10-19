@@ -1,11 +1,9 @@
-spring:
-  application:
-    name: notification
-
-
 server:
   port: 8086
 
+spring:
+  application:
+    name: notification
   datasource:
     username: 'admin'
     url: jdbc:postgresql://localhost:5432/notification
@@ -15,14 +13,13 @@ server:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-
-  zipkin:
-    base-url: http://localhost:9411
-
     hibernate:
       ddl-auto: update
     show-sql: true
 
+
+  zipkin:
+    base-url: http://localhost:9411
 
 eureka:
   client:
@@ -36,5 +33,6 @@ rabbitmq:
     notification: notification.queue
   routing-keys:
     internal-notification: internal.notification.routing-key
+
 
 
