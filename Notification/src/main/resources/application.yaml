@@ -21,14 +21,18 @@ spring:
   zipkin:
     base-url: http://localhost:9411
 
-
-
-
-
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-debug:
+
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queue:
+    notification: notification.queue
+  routing-keys:
+    internal-notification: internal.notification.routing-key
+
 
 

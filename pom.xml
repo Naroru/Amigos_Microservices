@@ -16,11 +16,12 @@
         <module>Clients</module>
         <module>Notification</module>
         <module>ApiGateway</module>
+        <module>rabbitMQ</module>
     </modules>
 
     <properties>
         <java.version>17</java.version>
-        <spring.parent.version>2.5.7</spring.parent.version>
+        <spring.parent.version>2.7.3</spring.parent.version>
         <lombok.version>1.18.34</lombok.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
     </properties>
