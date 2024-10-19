@@ -1,8 +1,8 @@
 package chukhlantsev.oleg.customer;
 
+import chukhlantsev.oleg.rabbit.RabbitMQMessageProducer;
 import chukhlantsev.oleg.clients.fraud.FraudCheckResponse;
 import chukhlantsev.oleg.clients.fraud.FraudClient;
-import chukhlantsev.oleg.clients.notification.NotificationClient;
 import chukhlantsev.oleg.clients.notification.NotificationRequest;
 import chukhlantsev.oleg.customer.dto.CustomerRegistrationRequest;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class CustomerService{
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
-    private final NotificationClient notificationClient;
+    private final RabbitMQMessageProducer messageProducer;
 
     public void registerCustomer(CustomerRegistrationRequest customerRegistrationRequest)
     {
@@ -44,12 +44,13 @@ public class CustomerService{
             throw new IllegalArgumentException("Customer is fraud!");
         }
 
-        notificationClient.sendNotification(
-                new NotificationRequest(
-                        customer.getEmail(),
-                        String.format("Hi %s. Welcome to microservice's world", customer.getName())
-                )
-        );
+        //sending to Rabbit for Notification service
+        NotificationRequest request = new NotificationRequest(
+                customer.getEmail(),
+                String.format("Hi %s. Welcome to microservice's world", customer.getName()));
+
+        messageProducer.publish(request,"myCustomExchange", "myRoutingKeyForNotificaton");
+
 
     }
 }

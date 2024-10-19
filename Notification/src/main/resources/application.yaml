@@ -1,14 +1,14 @@
-spring:
-  application:
-    name: notification
-
-
 server:
   port: 8086
 
+spring:
+  application:
+    name: notification
+  rabbitmq:
+    addresses: localhost:5672
   datasource:
-    username: 'admin'
     url: jdbc:postgresql://localhost:5432/notification
+    username: 'admin'
     password: 'password'
   jpa:
     properties:
@@ -23,18 +23,18 @@ server:
       ddl-auto: update
     show-sql: true
 
-
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
+#кастомные свойства
 rabbitmq:
   exchanges:
-    internal: internal.exchange
+    internal: myCustomExchange #better name internal.exchange
   queue:
-    notification: notification.queue
+    notification: myQueueForNotification #better name notification.queue
   routing-keys:
-    internal-notification: internal.notification.routing-key
+    internal-notification:  myRoutingKeyForNotificaton #better name internal.notification.routing-key
 
 
