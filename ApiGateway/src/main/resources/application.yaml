@@ -8,7 +8,7 @@ spring:
     gateway:
       routes:
         - id: customer
-          uri: lb://CUSTOMER  #name from Eureka
+          uri: lb://CUSTOMER  #name from Eureka  LB = Load balance
           predicates:
             - Path=/api/v1/customer/** #mask - all request to this address will be redirect to CUSTOMER in Eureka
                                         #may be several
