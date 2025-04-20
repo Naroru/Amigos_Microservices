@@ -24,6 +24,24 @@ services:
       - '5672:5672'
       - '15672:15672'
 
+  # ------------------------ Данные образы берем из нашего докер репозитрия, куда они попадают через jib. Если их нет, то можно просто запустить соответствующие модули
+  eureka-server:
+    image: naroru/eureka_server
+    container_name: eureka-server
+    ports:
+      - '8761:8761'
+    depends_on:
+      - zipkin
+
+  api-gateway:
+    image: naroru/api_gateway
+    container_name: api-gateway
+    ports:
+      - '8087:8087'
+    depends_on:
+      - zipkin
+      - eureka-server
+  # ------------------------
   zipkin:
     image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}
     container_name: zipkin
