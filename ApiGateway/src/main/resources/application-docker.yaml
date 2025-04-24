@@ -1,0 +1,25 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: API-Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: customer
+          uri: lb://CUSTOMER  #name from Eureka  LB = Load balance
+          predicates:
+            - Path=/api/v1/customer/** #mask - all request to this address will be redirect to CUSTOMER in Eureka
+            #may be several
+
+  zipkin:
+    base-url: http://zipkin:9411
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+
+
+

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: eureka server
+  zipkin:
+    base-url: http://zipkin:9411/
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    fetch-registry: false #you can read description of this prop -
+    #means we should get addresses from eureka for this app. It's because it is eureka server - not a client
+    register-with-eureka: false
