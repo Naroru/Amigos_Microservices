@@ -45,6 +45,44 @@ services:
     depends_on:
       - zipkin
       - eureka-server
+
+  customer:
+    image: naroru/customer
+    container_name: customer
+    ports:
+      - '8080:8080'
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+      - rabbitmq
+  fraud:
+    image: naroru/fraud
+    container_name: fraud
+    ports:
+      - '8081:8081'
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+      - rabbitmq
+
+  notification:
+    image: naroru/notification
+    container_name: notification
+    ports:
+      - '8086:8086'
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+      - rabbitmq
   # ------------------------
   zipkin:
     image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}

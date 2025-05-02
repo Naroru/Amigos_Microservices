@@ -1,0 +1,40 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: notification
+  rabbitmq:
+    addresses: rabbitmq:5672
+  datasource:
+    url: jdbc:postgresql://postgres:5432/notification
+    username: 'admin'
+    password: 'password'
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  zipkin:
+    base-url: http://zipkin:9411
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+
+#кастомные свойства
+rabbitmq:
+  exchanges:
+    internal: myCustomExchange #better name internal.exchange
+  queue:
+    notification: myQueueForNotification #better name notification.queue
+  routing-keys:
+    internal-notification: myRoutingKeyForNotificaton #better name internal.notification.routing-key
+
+

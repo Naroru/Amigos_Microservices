@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Configuration;
 @AllArgsConstructor
 public class Config {
 
-
     private final  ConnectionFactory connectionFactory;
 
     //позволяет отправлять сообщения в очередь
